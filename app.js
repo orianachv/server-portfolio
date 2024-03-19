@@ -29,7 +29,7 @@ app.post('/contact', (req, res) => {
   // Configura el correo
   const mailOptions = {
     from: email,
-    to: 'chacon.oriana.19@gmail.com', // Reemplaza con tu correo personal
+    to: process.env.EMAIL_USER,
     subject: `Nuevo mensaje de ${nombre}`,
     text: `Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`
   };
