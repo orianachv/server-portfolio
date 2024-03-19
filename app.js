@@ -7,9 +7,19 @@ const nodemailer = require('nodemailer');
 const app = express();
 const cors = require('cors');
 
+const allowedOrigins = ['http://localhost:3000', 'https://server-portfolio-oriana.vercel.app/'];
+
 app.use(cors({
-    origin: 'http://localhost:3000' // Solo permite solicitudes de este origen
-  }));
+    origin: function(origin, callback) {
+        // Permitir solicitudes sin 'origin' (como aplicaciones móviles o curl)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg = 'La política de CORS para este sitio no permite el acceso desde el origen especificado.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}));
   
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
