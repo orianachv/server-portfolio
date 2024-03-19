@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+
 const app = express();
 const cors = require('cors');
 
@@ -15,13 +18,13 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'chacon.oriana.19@gmail.com', 
-    pass: 'bscayyyavmnuolsv' 
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
 
 // Ruta para manejar el formulario de contacto
-app.post('/contacto', (req, res) => {
+app.post('/contact', (req, res) => {
   const { nombre, email, mensaje } = req.body;
     console.log('entro en el servidor')
   // Configura el correo
