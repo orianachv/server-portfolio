@@ -8,9 +8,7 @@ const app = express();
 const cors = require('cors');
 
 
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://server-portfolio-oriana.vercel.app'],
-}));
+app.use(cors());
   
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
