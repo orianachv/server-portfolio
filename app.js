@@ -6,9 +6,20 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 const cors = require('cors');
+app.options('*', cors());
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (origin === 'https://orianachv.github.io/oriana-chacon-website/' || !origin) {
+      callback(null, true);
+    } else if (origin.startsWith('http://localhost')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
 
-
-app.use(cors());
+app.use(cors(corsOptions));
   
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
