@@ -9,7 +9,7 @@ const cors = require('cors');
 app.options('*', cors());
 const corsOptions = {
   origin: function (origin, callback) {
-    if (origin === 'https://orianachv.github.io/oriana-chacon-website/' || !origin) {
+    if (origin === 'https://oriana-chacon-website.vercel.app/' || !origin) {
       callback(null, true);
     } else if (origin.startsWith('http://localhost')) {
       callback(null, true);
